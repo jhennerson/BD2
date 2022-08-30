@@ -147,3 +147,7 @@ from film f
 join film_actor fa on f.film_id = fa.film_id
 left join actor a on fa.actor_id = a.actor_id
 order by actor_name;
+
+# APAGA A COLUNA PICTURE
+alter table staff
+drop column picture;
