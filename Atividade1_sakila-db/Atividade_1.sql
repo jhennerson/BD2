@@ -15,7 +15,7 @@ select count(first_name) as TotalOfActorsLetterP from sakila.actor where first_n
 #OBTER TODOS OS ATORES COM NOME PENELOPE
 select * from sakila.actor where first_name = "PENELOPE";
 
-# A FUNÇÃO STRCMP() PARA COMPARAR DUAS STRINGS IGUAIS. QUANDO AS 2 STRINGS SÃO IGUAIS ELE RETORNARÁ 0.
+#A FUNÇÃO STRCMP() PARA COMPARAR DUAS STRINGS IGUAIS. QUANDO AS 2 STRINGS SÃO IGUAIS ELE RETORNARÁ 0.
 select first_name, last_name, strcmp(first_name, last_name) AS Cmp_Value from sakila.actor;
 
 #CONTA O TOTAL DE CARACTER DE CADA PALAVRA DA COLUNA FIRST_NAME
@@ -134,6 +134,16 @@ select *
 from cte
 where amount > 9.00
 order by amount desc;
+
+# OBTER OS DADOS DOS PAGAMENTOS EFETUADOS ANTES DO MÊS 7 DE 2005 E COM VALOR MENOR QUE 10.00
+select *
+from payment
+where amount in 
+(select amount
+from payment
+where payment_date < '2005-07-00 23-59-59' and amount < 10.00
+)
+order by payment_date;
 
 # OBTER A LISTA DE ENDEREÇOS DIFERENTES ONDE O DISTRITO É O MESMO ORDENADO POR DISTRITO
 select a1.address as 'adress_1', a1.address_id, a2.address as 'adress_2', a2.address_id, a1.district
